@@ -18,9 +18,12 @@
     <ClCompile Include="C:\Users\kaleid_liner\OneDrive\polynomial.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="driver.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\kaleid_liner\OneDrive\polynomial.h">
+    <ClInclude Include="polynomial.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
