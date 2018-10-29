@@ -82,6 +82,15 @@ namespace DataStructure.ServerSimulation
             }
         }
 
+        //in any case, push the task to taskQueue
+        public bool LazyTask(Task task)
+        {
+            if (!CanExecuteTask(task))
+                return false;
+            _taskQueue.Enqueue(task);
+            return true;
+        }
+
         public bool CanExecuteTask(Task task)
         {
             return Memory > task.MemoryCost && Cpu > task.CpuCost;

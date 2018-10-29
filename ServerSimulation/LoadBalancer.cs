@@ -10,6 +10,7 @@ namespace DataStructure.ServerSimulation
     {
         private List<Server> _servers = new List<Server>();
 
+        //apply a greedy method to deliver task
         public bool DeliverTask(Task task)
         {
             _servers.Sort();
@@ -20,6 +21,18 @@ namespace DataStructure.ServerSimulation
                 {
                     canExecute = true;
                     break;
+                }
+            }
+            if (!canExecute)
+            {
+                foreach (var server in _servers)
+                {
+                    if (server.CanExecuteTask(task))
+                    {
+                        server.LazyTask(task);
+                        canExecute = true;
+                        break;
+                    }
                 }
             }
             return canExecute;
