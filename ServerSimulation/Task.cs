@@ -8,10 +8,27 @@ namespace DataStructure.ServerSimulation
 {
     public class Task
     {
-        public double MemoryCost { get; set; }
+        public Task(double memoryCost, double cpuCost, int timeCost)
+        {
+            MemoryCost = memoryCost;
+            CpuCost = cpuCost;
+            TimeCost = timeCost;
+            TimeLeft = timeCost;
+        }
 
-        public double CpuCost { get; set; }
+        public void WorkFor(int timeSpan)
+        {
+            TimeLeft = Math.Min(TimeLeft - timeSpan, 0);
+        }
 
-        public int TimeLeft { get; set; }
+        public double MemoryCost { get; }
+
+        public double CpuCost { get; }
+
+        public int TimeCost { get; }
+
+        public int TimeLeft { get; private set; }
+
+        public bool Done => TimeLeft == 0;
     }
 }

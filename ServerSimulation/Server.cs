@@ -7,13 +7,15 @@ using Task = DataStructure.ServerSimulation.Task;
 
 namespace DataStructure.ServerSimulation
 {
-    public class Server
+    public class Server : IComparable<Server>
     {
         #region constructor
         public Server()
         {
             ServerNum++;
             ServerID = ServerNum;
+            _taskPool = new List<Task>();
+            _taskQueue = new Queue<Task>();
         }
         #endregion constructor
 
@@ -23,9 +25,9 @@ namespace DataStructure.ServerSimulation
 
         #endregion field
 
-        #region attribute
+        #region property
         public int ServerID { get;}
-        static public int ServerNum { get; private set; }
+        static public int ServerNum { get; private set; } = 0;
 
         public double Memory { get; private set; }
 
@@ -35,9 +37,9 @@ namespace DataStructure.ServerSimulation
 
         public double CpuUsage { get; private set; }
 
-        public double MemoryLest => Memory - MemoryUsage;
+        public double MemoryLeft => Memory - MemoryUsage;
 
-        public double CpuLest => Cpu - CpuUsage;
+        public double CpuLeft => Cpu - CpuUsage;
 
         public double MemoryUsageRate => MemoryUsage / Memory;
 
@@ -49,7 +51,7 @@ namespace DataStructure.ServerSimulation
         #endregion attribute
 
         #region method
-        private bool AddTask(Task task)
+        public bool AddTask(Task task)
         {
             if (MemoryUsage + task.MemoryCost < Memory
                 && CpuUsage + task.CpuCost < Cpu)
@@ -62,14 +64,14 @@ namespace DataStructure.ServerSimulation
             return false;
         }
 
+        //use this method if you accept the task may be delayed
         public bool DeliverTask(Task task)
         {
             if (AddTask(task))
             {
                 return true;
             }
-            else if (Memory > task.MemoryCost
-                || Cpu > task.CpuCost)
+            else if (!CanExecuteTask(task))
             {
                 return false;
             }
@@ -78,6 +80,11 @@ namespace DataStructure.ServerSimulation
                 _taskQueue.Enqueue(task);
                 return true;
             }
+        }
+
+        public bool CanExecuteTask(Task task)
+        {
+            return Memory > task.MemoryCost && Cpu > task.CpuCost;
         }
 
         private void TaskDone(Task task)
@@ -100,8 +107,8 @@ namespace DataStructure.ServerSimulation
         {
             foreach (var task in _taskPool)
             {
-                task.TimeLeft--;
-                if (task.TimeLeft == 0)
+                task.WorkFor(1);
+                if (task.Done)
                 {
                     TaskDone(task);
                 }
@@ -115,6 +122,12 @@ namespace DataStructure.ServerSimulation
                     _taskQueue.Dequeue();
                 }
             }
+        }
+
+        public int CompareTo(Server other)
+        {
+            return (MemoryLeft / Memory + CpuLeft / Cpu).CompareTo(
+                other.MemoryLeft / other.Memory + other.CpuLeft / other.Cpu);
         }
 
         #endregion method
