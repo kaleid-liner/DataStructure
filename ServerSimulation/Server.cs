@@ -114,14 +114,14 @@ namespace DataStructure.ServerSimulation
         //called per units of time
         public void Refresh()
         {
-            foreach (var task in _taskPool)
+            _taskPool.ForEach(t =>
             {
-                task.WorkFor(1);
-                if (task.Done)
+                t.WorkFor(1);
+                if (t.Done)
                 {
-                    TaskDone(task);
+                    TaskDone(t);
                 }
-            }
+            });
             _taskPool.RemoveAll(t => t.TimeLeft == 0);
             while (_taskQueue.Any())
             {
@@ -130,6 +130,7 @@ namespace DataStructure.ServerSimulation
                 {
                     _taskQueue.Dequeue();
                 }
+                else break;
             }
         }
 

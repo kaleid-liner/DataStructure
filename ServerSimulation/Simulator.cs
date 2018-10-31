@@ -20,6 +20,28 @@ namespace DataStructure.ServerSimulation
             }
         }
 
+        private int _tasks = 0;
+        public int Tasks
+        {
+            get => _tasks;
+            private set
+            {
+                _tasks = value;
+                OnPropertyChanged(nameof(Tasks));
+            }
+        }
+
+        private int _waitTime = 0;
+        public int WaitTime
+        {
+            get => _waitTime;
+            private set
+            {
+                _waitTime = value;
+                OnPropertyChanged(nameof(WaitTime));
+            }
+        }
+
         private int _interval = 1;
         public int Interval
         {
@@ -66,10 +88,12 @@ namespace DataStructure.ServerSimulation
                 }
                 if (anyTask)
                 {
+                    Tasks++;
                     bool canExecute = balancer.DeliverTask(generator.NextTask);
                     if (!canExecute)
                         FailedTasks++;
                 }
+                _waitTime += balancer.Refresh();
             }
         }
 

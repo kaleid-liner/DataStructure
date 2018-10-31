@@ -38,6 +38,13 @@ namespace DataStructure.ServerSimulation
             return canExecute;
         }
 
+        //return sum of wait time
+        public int Refresh()
+        {
+            _servers.ForEach(s => s.Refresh());
+            return _servers.Sum(s => s.TasksInQueue);
+        }
+
         public void AddServer(Server server)
         {
             _servers.Add(server);
