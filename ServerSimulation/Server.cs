@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Task = DataStructure.ServerSimulation.Task;
+using System.ComponentModel;
 
 namespace DataStructure.ServerSimulation
 {
-    public class Server : IComparable<Server>
+    public class Server : IComparable<Server>, INotifyPropertyChanged
     {
         #region constructor
         public Server()
@@ -22,6 +23,11 @@ namespace DataStructure.ServerSimulation
         #region field
         private List<Task> _taskPool;
         private Queue<Task> _taskQueue;
+        private double _memory = 128;
+        private double _cpu = 8;
+        private double _memoryUsage = 0;
+        private double _cpuUsage = 0;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion field
 
@@ -30,14 +36,46 @@ namespace DataStructure.ServerSimulation
         static public int ServerNum { get; private set; } = 0;
 
         //unit: GB
-        public double Memory { get; private set; } = 128;
+        public double Memory
+        {
+            get => _memory;
+            private set
+            {
+                _memory = value;
+                OnPropertyChanged(nameof(Memory));
+            }
+        }
 
         //in general, this represents the core num of cpu
-        public double Cpu { get; private set; } = 8;
+        public double Cpu
+        {
+            get => _cpu;
+            private set
+            {
+                _cpu = value;
+                OnPropertyChanged(nameof(Cpu));
+            }
+        }
 
-        public double MemoryUsage { get; private set; } = 0;
+        public double MemoryUsage
+        {
+            get => _memoryUsage;
+            private set
+            {
+                _memoryUsage = value;
+                OnPropertyChanged(nameof(MemoryUsage));
+            }
+        }
 
-        public double CpuUsage { get; private set; } = 0;
+        public double CpuUsage
+        {
+            get => _cpuUsage;
+            private set
+            {
+                _cpuUsage = value;
+                OnPropertyChanged(nameof(CpuUsage));
+            }
+        }
 
         public double MemoryLeft => Memory - MemoryUsage;
 
@@ -141,6 +179,9 @@ namespace DataStructure.ServerSimulation
             return (MemoryLeft / Memory + CpuLeft / Cpu).CompareTo(
                 other.MemoryLeft / other.Memory + other.CpuLeft / other.Cpu);
         }
+        
+        public void OnPropertyChanged(string propertyName)
+            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         #endregion method
 

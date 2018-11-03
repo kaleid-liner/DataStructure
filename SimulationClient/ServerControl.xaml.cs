@@ -29,6 +29,7 @@ namespace SimulationClient
         private void CpuButton_Click(object sender, RoutedEventArgs e)
         {
             InputDialog cpuDialog = new InputDialog("你想升级多少CPU？（请输入一个整数/浮点数。）");
+            cpuDialog.ShowDialog();
             if (cpuDialog.DialogResult == true)
             {
                 if (Double.TryParse(cpuDialog.Result, out double result))
@@ -40,6 +41,7 @@ namespace SimulationClient
         private void MemoryButton_Click(object sender, RoutedEventArgs e)
         {
             InputDialog memoryDialog = new InputDialog("你想升级多少内存？（请输入一个整数/浮点数，单位：GB）");
+            memoryDialog.ShowDialog();
             if (memoryDialog.DialogResult == true)
             {
                 if (Double.TryParse(memoryDialog.Result, out double result))

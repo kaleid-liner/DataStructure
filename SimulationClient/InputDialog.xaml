@@ -9,8 +9,8 @@
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Canvas>
-            <TextBlock x:Name="questionBlock" Canvas.Top="20" Canvas.Left="30" />
-            <TextBox x:Name="inputBox" Canvas.Top="50" Canvas.Left="100" Width="120"/>
+            <TextBlock x:Name="questionBlock" Width="220" Margin="10" TextWrapping="Wrap"/>
+            <TextBox x:Name="inputBox" Canvas.Top="60" Canvas.Left="100" Width="120"/>
             <Button IsDefault="True" x:Name="OkButton" Width="50" Canvas.Top="90" Canvas.Left="120" Content="OK" Click="Button_Click"/>
             <Button IsCancel="True" Width="50" Canvas.Top="90" Canvas.Left="180" Content="Cancel"/>
         </Canvas>

@@ -22,7 +22,7 @@ namespace SimulationClient
 
         #region property
         public ObservableCollection<Server> Cluster { get; set; }
-        public Simulator Simulator { get; set; }
+        public Simulator Simulator { get; private set; }
         #endregion property
 
         #region constructor
@@ -30,6 +30,8 @@ namespace SimulationClient
         {
             Cluster = new ObservableCollection<Server>();
             generator = new TaskGenerator();
+            balancer = new LoadBalancer();
+            Simulator = new Simulator();
             timer = new DispatcherTimer
             {
                 Interval = new TimeSpan(0, 0, 1)

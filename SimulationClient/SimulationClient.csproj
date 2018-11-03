@@ -59,11 +59,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converter.cs" />
     <Compile Include="InputDialog.xaml.cs">
       <DependentUpon>InputDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="ServerControl.xaml.cs">
       <DependentUpon>ServerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SimulateMainWindow.xaml.cs">
+      <DependentUpon>SimulateMainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SimulatorViewModel.cs" />
     <Page Include="InputDialog.xaml">
@@ -83,6 +87,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ServerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SimulateMainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
