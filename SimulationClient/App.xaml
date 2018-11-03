@@ -4,6 +4,17 @@
              xmlns:local="clr-namespace:SimulationClient"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Offset="0" Color="White"/>
+                            <GradientStop Offset="1" Color="SkyBlue"/>
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Foreground" Value="Gray"/>
+        </Style>
          
     </Application.Resources>
 </Application>

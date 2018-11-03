@@ -42,14 +42,14 @@ namespace DataStructure.ServerSimulation
             }
         }
 
-        private int _interval = 1;
-        public int Interval
+        private int _frequency = 1;
+        public int Frequency
         {
-            get => _interval;
+            get => _frequency;
             set
             {
-                _interval = Math.Min(1, value);
-                OnPropertyChanged(nameof(Interval));
+                _frequency = Math.Min(1, value);
+                OnPropertyChanged(nameof(Frequency));
             }
         }
 
@@ -79,7 +79,7 @@ namespace DataStructure.ServerSimulation
         public void Simulate(LoadBalancer balancer, 
             TaskGenerator generator)
         {
-            for (int i = 0; i < _interval; i++)
+            for (int i = 0; i < _frequency; i++)
             {
                 bool anyTask;
                 lock(randLock)

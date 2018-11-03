@@ -29,13 +29,15 @@ namespace DataStructure.ServerSimulation
         public int ServerID { get;}
         static public int ServerNum { get; private set; } = 0;
 
-        public double Memory { get; private set; }
+        //unit: GB
+        public double Memory { get; private set; } = 128;
 
-        public double Cpu { get; private set; }
+        //in general, this represents the core num of cpu
+        public double Cpu { get; private set; } = 8;
 
-        public double MemoryUsage { get; private set; }
+        public double MemoryUsage { get; private set; } = 0;
 
-        public double CpuUsage { get; private set; }
+        public double CpuUsage { get; private set; } = 0;
 
         public double MemoryLeft => Memory - MemoryUsage;
 
@@ -103,7 +105,7 @@ namespace DataStructure.ServerSimulation
         }
 
         //do nothing if memoryInc or cpuInc < 0
-        public void Upgrage(double memoryInc, double cpuInc)
+        public void Upgrade(double memoryInc, double cpuInc)
         {
             if (memoryInc < 0 || cpuInc < 0)
                 return;
