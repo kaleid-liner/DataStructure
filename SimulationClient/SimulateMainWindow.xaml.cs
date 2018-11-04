@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using DataStructure.ServerSimulation;
 
 namespace SimulationClient
 {
@@ -22,6 +23,7 @@ namespace SimulationClient
         public SimulateMainWindow()
         {
             InitializeComponent();
+            DataContext = new SimulatorViewModel();
         }
     }
 }

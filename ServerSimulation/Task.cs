@@ -18,7 +18,7 @@ namespace DataStructure.ServerSimulation
 
         public void WorkFor(int timeSpan)
         {
-            TimeLeft = Math.Min(TimeLeft - timeSpan, 0);
+            TimeLeft = Math.Max(TimeLeft - timeSpan, 0);
         }
 
         public double MemoryCost { get; }
