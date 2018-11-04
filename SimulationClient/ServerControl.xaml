@@ -32,8 +32,11 @@
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1*"/>
+                            <RowDefinition Height="7"/>
                             <RowDefinition Height="1*"/>
+                            <RowDefinition Height="7"/>
                             <RowDefinition Height="1*"/>
+                            <RowDefinition Height="7"/>
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
@@ -46,16 +49,30 @@
             <StatusBarItem Grid.Column="0" Grid.Row="0">
                 <TextBlock Text="CPU" FontSize="9"/>
             </StatusBarItem>
-            <StatusBarItem Grid.Column="0" Grid.Row="1">
+            <StatusBarItem Grid.Column="0" Grid.Row="2">
                 <TextBlock Text="内存" FontSize="9"/>
             </StatusBarItem>
-            <StatusBarItem Grid.Column="0" Grid.Row="2">
+            <StatusBarItem Grid.Column="0" Grid.Row="4">
                 <TextBlock Text="正运行的任务" FontSize="9" TextWrapping="Wrap"/>
             </StatusBarItem>
-            <StatusBarItem Grid.Column="0" Grid.Row="3">
+            <StatusBarItem Grid.Column="0" Grid.Row="6">
                 <TextBlock Text="等待中的任务" FontSize="9" TextWrapping="Wrap"/>
             </StatusBarItem>
-            <GridSplitter Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"/>
+            <Separator Grid.Row="1" Grid.ColumnSpan="2"/>
+            <Separator Grid.Row="3" Grid.ColumnSpan="2"/>
+            <Separator Grid.Row="5" Grid.ColumnSpan="2"/>
+            <StatusBarItem Grid.Row="0" Grid.Column="1">
+                <TextBlock Text="{Binding Cpu}"/>
+            </StatusBarItem>
+            <StatusBarItem Grid.Row="2" Grid.Column="1">
+                <TextBlock Text="{Binding Memory}"/>
+            </StatusBarItem>
+            <StatusBarItem Grid.Row="4" Grid.Column="1">
+                <TextBlock Text="{Binding TasksInPool}"/>
+            </StatusBarItem>
+            <StatusBarItem Grid.Row="6" Grid.Column="1">
+                <TextBlock Text="{Binding TasksInQueue}"/>
+            </StatusBarItem>
         </StatusBar>
     </Grid>
 </UserControl>

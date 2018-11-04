@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SimulationClient"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="服务器模拟" Height="600" Width="800" Background="AliceBlue"  MinWidth="700"
+        Title="服务器集群模拟" Height="600" Width="800" Background="AliceBlue"  MinWidth="700"
         WindowStartupLocation="CenterScreen">
     <Window.CommandBindings>
     </Window.CommandBindings>

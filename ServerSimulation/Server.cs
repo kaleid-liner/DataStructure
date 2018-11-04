@@ -27,6 +27,7 @@ namespace DataStructure.ServerSimulation
         private double _cpu = 8;
         private double _memoryUsage = 0;
         private double _cpuUsage = 0;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion field
@@ -172,6 +173,8 @@ namespace DataStructure.ServerSimulation
                 }
                 else break;
             }
+            OnPropertyChanged(nameof(TasksInPool));
+            OnPropertyChanged(nameof(TasksInQueue));
         }
 
         public int CompareTo(Server other)
