@@ -93,7 +93,7 @@ namespace DataStructure.ServerSimulation
                     if (!canExecute)
                         FailedTasks++;
                 }
-                _waitTime += balancer.Refresh();
+                WaitTime += balancer.Refresh();
             }
         }
 

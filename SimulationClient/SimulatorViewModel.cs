@@ -49,7 +49,7 @@ namespace SimulationClient
             StopCommand = new RelayCommand(StopSimulation);
             timer = new DispatcherTimer
             {
-                Interval = new TimeSpan(0, 0, 1)
+                Interval = new TimeSpan(0, 0, 0, 0, 100)
             };
             timer.Tick += Refresh;
         }

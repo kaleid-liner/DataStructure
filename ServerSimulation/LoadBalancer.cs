@@ -13,7 +13,7 @@ namespace DataStructure.ServerSimulation
         //apply a greedy method to deliver task
         public bool DeliverTask(Task task)
         {
-            _servers.Sort();
+            _servers.Sort((a, b) => -a.CompareTo(b));
             bool canExecute = false;
             foreach (var server in _servers)
             {

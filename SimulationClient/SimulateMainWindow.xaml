@@ -105,7 +105,7 @@
         </StatusBar>
         <Canvas Grid.Column="0" Grid.Row="0" Margin="20">
             <Button Command="{Binding StartCommand}" Canvas.Top="200" Canvas.Left="180" Content="START" FontSize="50" Style="{StaticResource ButtonStyle}"/>
-            <local:ServerControl x:Name="Server1" Height="230" Width="180" Canvas.Top="0" DataContext="{Binding Cluster[0]}">
+            <local:ServerControl x:Name="Server1" Height="180" Width="180" Canvas.Top="0" DataContext="{Binding Cluster[0]}">
                 <UserControl.Visibility>
                     <MultiBinding Converter="{StaticResource visibilityConverter}">
                         <Binding Source="{StaticResource value1}"/>
@@ -113,7 +113,7 @@
                     </MultiBinding>
                 </UserControl.Visibility>
             </local:ServerControl>
-            <local:ServerControl x:Name="Server2" Height="230" Width="180" Canvas.Bottom="0" DataContext="{Binding Cluster[1]}">
+            <local:ServerControl x:Name="Server2" Height="180" Width="180" Canvas.Bottom="0" DataContext="{Binding Cluster[1]}">
                 <UserControl.Visibility>
                     <MultiBinding Converter="{StaticResource visibilityConverter}">
                         <Binding Source="{StaticResource value2}"/>
@@ -121,7 +121,7 @@
                     </MultiBinding>
                 </UserControl.Visibility>
             </local:ServerControl>
-            <local:ServerControl x:Name="Server3" Height="230" Width="180" Canvas.Right="0" DataContext="{Binding Cluster[2]}">
+            <local:ServerControl x:Name="Server3" Height="180" Width="180" Canvas.Right="0" DataContext="{Binding Cluster[2]}">
                 <UserControl.Visibility>
                     <MultiBinding Converter="{StaticResource visibilityConverter}">
                         <Binding Source="{StaticResource value3}"/>
@@ -129,7 +129,7 @@
                     </MultiBinding>
                 </UserControl.Visibility>
             </local:ServerControl>
-            <local:ServerControl x:Name="Server4" Height="230" Width="180" Canvas.Right="0" Canvas.Bottom="0" DataContext="{Binding Cluster[3]}">
+            <local:ServerControl x:Name="Server4" Height="180" Width="180" Canvas.Right="0" Canvas.Bottom="0" DataContext="{Binding Cluster[3]}">
                 <UserControl.Visibility>
                     <MultiBinding Converter="{StaticResource visibilityConverter}">
                         <Binding Source="{StaticResource value4}"/>

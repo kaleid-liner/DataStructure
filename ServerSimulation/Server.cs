@@ -139,7 +139,7 @@ namespace DataStructure.ServerSimulation
         private void TaskDone(Task task)
         {
             MemoryUsage -= task.MemoryCost;
-            CpuUsage -= task.MemoryCost;
+            CpuUsage -= task.CpuCost;
         }
 
         //do nothing if memoryInc or cpuInc < 0
@@ -162,7 +162,7 @@ namespace DataStructure.ServerSimulation
                     TaskDone(t);
                 }
             });
-            _taskPool.RemoveAll(t => t.TimeLeft == 0);
+            _taskPool.RemoveAll(t => t.Done);
             while (_taskQueue.Any())
             {
                 var task = _taskQueue.Peek();
