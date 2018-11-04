@@ -25,5 +25,27 @@ namespace SimulationClient
             InitializeComponent();
             DataContext = new SimulatorViewModel();
         }
+
+        private void StartExecute(object sender, ExecutedRoutedEventArgs e)
+        {
+            (DataContext as SimulatorViewModel).StartSimulation();
+        }
+
+        private void StopExecute(object sender, ExecutedRoutedEventArgs e)
+        {
+            (DataContext as SimulatorViewModel).StopSimulation();
+        }
+
+        private void ResetExecute(object sender, ExecutedRoutedEventArgs e)
+        {
+            (DataContext as SimulatorViewModel).ResetSimulation();
+        }
+
+        private void AboutExecute(object sender, ExecutedRoutedEventArgs e)
+        {
+            About about = new About();
+            about.Show();
+        }
+
     }
 }

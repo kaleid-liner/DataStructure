@@ -43,12 +43,13 @@ namespace DataStructure.ServerSimulation
         }
 
         private int _frequency = 1;
+        //单位时间内产生任务次数
         public int Frequency
         {
             get => _frequency;
             set
             {
-                _frequency = Math.Min(1, value);
+                _frequency = Math.Max(1, value);
                 OnPropertyChanged(nameof(Frequency));
             }
         }
@@ -64,7 +65,7 @@ namespace DataStructure.ServerSimulation
         public void OnPropertyChanged(string propertyName)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-        //possibility of generating any task in one unit of time
+        //possibility of generating any task
         public double Possibility
         {
             get => possibility;
@@ -84,7 +85,7 @@ namespace DataStructure.ServerSimulation
                 bool anyTask;
                 lock(randLock)
                 {
-                    anyTask = random.NextDouble() > possibility;
+                    anyTask = random.NextDouble() <= possibility;
                 }
                 if (anyTask)
                 {
@@ -93,8 +94,17 @@ namespace DataStructure.ServerSimulation
                     if (!canExecute)
                         FailedTasks++;
                 }
-                WaitTime += balancer.Refresh();
             }
+            WaitTime += balancer.Refresh();
+        }
+
+        public void Reset()
+        {
+            FailedTasks = 0;
+            Tasks = 0;
+            WaitTime = 0;
+            Possibility = 0.5;
+            Frequency = 1;
         }
 
     }

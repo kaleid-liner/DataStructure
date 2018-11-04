@@ -49,5 +49,10 @@ namespace DataStructure.ServerSimulation
         {
             _servers.Add(server);
         }
+
+        public void Reset()
+        {
+            _servers.Clear();
+        }
     }
 }

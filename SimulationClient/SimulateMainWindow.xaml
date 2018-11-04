@@ -9,6 +9,10 @@
         Title="服务器集群模拟" Height="600" Width="800" Background="AliceBlue"  MinWidth="700"
         WindowStartupLocation="CenterScreen">
     <Window.CommandBindings>
+        <CommandBinding Command="local:SimulatorViewModel.StartCommand" Executed="StartExecute"/>
+        <CommandBinding Command="local:SimulatorViewModel.StopCommand" Executed="StopExecute"/>
+        <CommandBinding Command="local:SimulatorViewModel.ResetCommand" Executed="ResetExecute"/>
+        <CommandBinding Command="local:SimulatorViewModel.AboutCommand" Executed="AboutExecute"/>
     </Window.CommandBindings>
     <Window.Resources>
         <local:AVWTConverter x:Key="avwtConverter"/>
@@ -54,10 +58,11 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <StatusBar Grid.Column="0" Grid.Row="1">
+        <StatusBar Grid.Column="0" Grid.Row="2">
             <StatusBar.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Grid>
@@ -103,8 +108,23 @@
                 <Label Content="{Binding Simulator.FailedTasks}"/>
             </StatusBarItem>
         </StatusBar>
-        <Canvas Grid.Column="0" Grid.Row="0" Margin="20">
-            <Button Command="{Binding StartCommand}" Canvas.Top="200" Canvas.Left="180" Content="START" FontSize="50" Style="{StaticResource ButtonStyle}"/>
+        <Menu Background="LightSkyBlue" Grid.ColumnSpan="2">
+            <MenuItem Header="模拟" Foreground="White">
+                <MenuItem Header="开始" Background="White" Foreground="Black" Command="local:SimulatorViewModel.StartCommand"/>
+                <MenuItem Header="停止" Background="White" Foreground="Black" Command="local:SimulatorViewModel.StopCommand"/>
+                <MenuItem Header="重置" Background="White" Foreground="Black" Command="local:SimulatorViewModel.ResetCommand"/>
+            </MenuItem>
+            <MenuItem Header="设置" Foreground="White">
+                <MenuItem Header="任务设置" Background="White" Foreground="Black" Command="{Binding ConfigCommand}"/>
+            </MenuItem>
+            <MenuItem Header="帮助" Foreground="White">
+                <MenuItem Header="关于" Background="White" Foreground="Black" Command="local:SimulatorViewModel.AboutCommand"/>
+                <MenuItem Header="文档" Background="White" Foreground="Black"/>
+            </MenuItem>
+                
+        </Menu>
+        <Canvas Grid.Column="0" Grid.Row="1" Margin="20">
+            <Button Command="local:SimulatorViewModel.StartCommand" Canvas.Top="200" Canvas.Left="180" Content="START" FontSize="40" Style="{StaticResource ButtonStyle}"/>
             <local:ServerControl x:Name="Server1" Height="180" Width="180" Canvas.Top="0" DataContext="{Binding Cluster[0]}">
                 <UserControl.Visibility>
                     <MultiBinding Converter="{StaticResource visibilityConverter}">
@@ -138,13 +158,13 @@
                 </UserControl.Visibility>
             </local:ServerControl>
         </Canvas>
-        <ListBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding Cluster}" Background="Transparent"
+        <ListBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Cluster}" Background="Transparent"
                  ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Auto"
                  HorizontalContentAlignment="Stretch" ItemsPanel="{StaticResource serverPanel}" 
                  ItemTemplate="{StaticResource serverTemplate}" >
         </ListBox>
 
-        <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource ButtonStyle}" Content="增加服务器" Command="{Binding AddServerCommand}"/>
+        <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource ButtonStyle}" Content="增加服务器" Command="{Binding AddServerCommand}"/>
 
     </Grid>
 </Window>

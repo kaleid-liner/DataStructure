@@ -177,6 +177,11 @@ namespace DataStructure.ServerSimulation
             OnPropertyChanged(nameof(TasksInQueue));
         }
 
+        public static void Reset()
+        {
+            ServerNum = 0;
+        }
+
         public int CompareTo(Server other)
         {
             return (MemoryLeft / Memory + CpuLeft / Cpu).CompareTo(
