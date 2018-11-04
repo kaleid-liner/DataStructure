@@ -19,31 +19,34 @@ namespace SimulationClient
     /// </summary>
     public partial class Config : Window
     {
-        public Config()
+        public Config(int interval)
         {
             InitializeComponent();
             DataContext = this;
+            RefreshTime = interval;
+            switch (RefreshTime)
+            {
+                case 50: radio50.IsChecked = true; break;
+                case 100: radio100.IsChecked = true; break;
+                case 500: radio500.IsChecked = true; break;
+                case 1000: radio1000.IsChecked = true; break;
+                default: radio100.IsChecked = true; break;
+            }
         }
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                MinCpu = Double.Parse(minCpuBox.Text);
-                MaxCpu = Double.Parse(maxCpuBox.Text);
-                MinMemory = Double.Parse(minMemoryBox.Text);
-                MaxMemory = Double.Parse(maxMemoryBox.Text);
-                MinTime = Int32.Parse(minTimeBox.Text);
-                MaxTime = Int32.Parse(maxTimeBox.Text);
-                Frequency = Int32.Parse(frequencyBox.Text);
-                Possibility = Double.Parse(possibilityBox.Text);
-                DialogResult = true;
-                Close();
-            }
-            catch (System.FormatException)
-            {
-                MessageBox.Show("请输入合法格式的数字！");
-            }
+            DialogResult = true;
+            if (radio50.IsChecked == true)
+                RefreshTime = 50;
+            else if (radio100.IsChecked == true)
+                RefreshTime = 100;
+            else if (radio500.IsChecked == true)
+                RefreshTime = 500;
+            else if (radio1000.IsChecked == true)
+                RefreshTime = 1000;
+            else RefreshTime = 100;
+            Close();
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -69,25 +72,5 @@ namespace SimulationClient
         public int RefreshTime { get; set; }
 
         public double Possibility { get; set; }
-
-        private void RadioButton_Checked_50(object sender, RoutedEventArgs e)
-        {
-            RefreshTime = 50;
-        }
-
-        private void RadioButton_Checked_100(object sender, RoutedEventArgs e)
-        {
-            RefreshTime = 100;
-        }
-
-        private void RadioButton_Checked_500(object sender, RoutedEventArgs e)
-        {
-            RefreshTime = 500;
-        }
-
-        private void RadioButton_Checked_1000(object sender, RoutedEventArgs e)
-        {
-            RefreshTime = 1000;
-        }
     }
 }

@@ -18,6 +18,20 @@ namespace DataStructure.ServerSimulation
         private Random random = new Random();
         #endregion field
 
+        #region property
+        public double MinMemory => _minMemory;
+
+        public double MaxMemory => _maxMemory;
+
+        public double MinCpu => _minCpu;
+
+        public double MaxCpu => _maxCpu;
+
+        public int MinTime => _minTime;
+
+        public int MaxTime => _maxTime;
+        #endregion property
+
         public TaskGenerator()
         {
             _minMemory = 1;

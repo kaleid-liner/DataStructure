@@ -18,10 +18,6 @@ namespace SimulationClient
         private TaskGenerator generator;
         private LoadBalancer balancer;
         private DispatcherTimer timer;
-        private Config config = new Config()
-        {
-            Possibility = 0.5
-        };
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -139,6 +135,17 @@ namespace SimulationClient
         private void ConfigExecute()
         {
             timer.Stop();
+            var config = new Config(timer.Interval.Milliseconds)
+            {
+                Possibility = Simulator.Possibility,
+                Frequency = Simulator.Frequency,
+                MinMemory = generator.MinMemory,
+                MaxMemory = generator.MaxMemory,
+                MinCpu = generator.MinCpu,
+                MaxCpu = generator.MaxCpu,
+                MinTime = generator.MinTime,
+                MaxTime = generator.MaxTime
+            };
             if (config.ShowDialog() == true)
             {
                 generator.Config(config.MinMemory, config.MaxMemory,
