@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimulationClient"
         mc:Ignorable="d"
-        Title="Config" Height="300" Width="434" MinHeight="300" MinWidth="434"
+        Title="Config" Height="350" Width="434" MinHeight="300" MinWidth="434"
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
@@ -32,38 +32,38 @@
         <RadioButton x:Name="radio50" Content="50ms" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left"
                      Margin="50,80,0,0" />
         <RadioButton x:Name="radio100" Content="100ms" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left"
-                     Margin="50,100,0,0" />
+                     Margin="50,105,0,0" />
         <RadioButton x:Name="radio500" Content="500ms" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left"
-                     Margin="50,120,0,0" />
+                     Margin="50,130,0,0" />
         <RadioButton x:Name="radio1000" Content="1000ms" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left"
-                     Margin="50,140,0,0" />
+                     Margin="50,155,0,0" />
         <Label Content="随机事件发生频率" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left"
                Margin="160,50,0,0"/>
         <TextBox x:Name="frequencyBox" Text="{Binding Frequency}" Grid.Row="2" Width="70" Height="20" Margin="280,50,0,0" 
                  VerticalAlignment="Top" HorizontalAlignment="Left" HorizontalContentAlignment="Right"/>
         <Label Content="任务占用内存" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left"
-               Margin="160,75,0,0"/>
+               Margin="160,80,0,0"/>
         <Label Content="任务占用CPU" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left"
-               Margin="160,100,0,0"/>
+               Margin="160,110,0,0"/>
         <Label Content="任务占用时间" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left"
-               Margin="160,125,0,0"/>
+               Margin="160,140,0,0"/>
         <Label Content="~" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left"
                Margin="310,75,0,0"/>
         <Label Content="~" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left"
                Margin="310,100,0,0"/>
         <Label Content="~" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left"
                Margin="310,125,0,0"/>
-        <TextBox x:Name="minMemoryBox" Text="{Binding MinMemory}" Grid.Row="2" Width="50" Height="20" Margin="250,78,0,0" 
+        <TextBox x:Name="minMemoryBox" Text="{Binding MinMemory}" Grid.Row="2" Width="50" Height="20" Margin="250,80,0,0" 
                  VerticalAlignment="Top" HorizontalAlignment="Left" HorizontalContentAlignment="Right"/>
-        <TextBox x:Name="maxMemoryBox" Text="{Binding MaxMemory}" Grid.Row="2" Width="50" Height="20" Margin="340,78,0,0" 
+        <TextBox x:Name="maxMemoryBox" Text="{Binding MaxMemory}" Grid.Row="2" Width="50" Height="20" Margin="340,80,0,0" 
                  VerticalAlignment="Top" HorizontalAlignment="Left" HorizontalContentAlignment="Right"/>
-        <TextBox x:Name="minCpuBox" Text="{Binding MinCpu}" Grid.Row="2" Width="50" Height="20" Margin="250,105,0,0" 
+        <TextBox x:Name="minCpuBox" Text="{Binding MinCpu}" Grid.Row="2" Width="50" Height="20" Margin="250,110,0,0" 
                  VerticalAlignment="Top" HorizontalAlignment="Left" HorizontalContentAlignment="Right"/>
-        <TextBox x:Name="maxCpuBox" Text="{Binding MaxCpu}" Grid.Row="2" Width="50" Height="20" Margin="340,105,0,0" 
+        <TextBox x:Name="maxCpuBox" Text="{Binding MaxCpu}" Grid.Row="2" Width="50" Height="20" Margin="340,110,0,0" 
                  VerticalAlignment="Top" HorizontalAlignment="Left" HorizontalContentAlignment="Right"/>
-        <TextBox x:Name="minTimeBox" Text="{Binding MinTime}" Grid.Row="2" Width="50" Height="20" Margin="250,130,0,0" 
+        <TextBox x:Name="minTimeBox" Text="{Binding MinTime}" Grid.Row="2" Width="50" Height="20" Margin="250,140,0,0" 
                  VerticalAlignment="Top" HorizontalAlignment="Left" HorizontalContentAlignment="Right"/>
-        <TextBox x:Name="maxTimeBox" Text="{Binding MaxTime}" Grid.Row="2" Width="50" Height="20" Margin="340,130,0,0" 
+        <TextBox x:Name="maxTimeBox" Text="{Binding MaxTime}" Grid.Row="2" Width="50" Height="20" Margin="340,140,0,0" 
                  VerticalAlignment="Top" HorizontalAlignment="Left" HorizontalContentAlignment="Right"/>
     </Grid>
 </Window>

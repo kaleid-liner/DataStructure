@@ -47,5 +47,9 @@ namespace SimulationClient
             about.Show();
         }
 
+        private void Document_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/kaleid-liner/DataStructure");
+        }
     }
 }

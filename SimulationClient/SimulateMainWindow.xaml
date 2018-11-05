@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimulationClient"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         mc:Ignorable="d"
-        Title="服务器集群模拟" Height="600" Width="800" Background="AliceBlue"  MinWidth="700"
+        Title="服务器集群模拟" Height="600" Width="800"  MinWidth="700"
         WindowStartupLocation="CenterScreen">
     <Window.CommandBindings>
         <CommandBinding Command="local:SimulatorViewModel.StartCommand" Executed="StartExecute"/>
@@ -27,25 +31,45 @@
         <DataTemplate x:Key="serverTemplate">
             <Grid Height="Auto" >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="40"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="70"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="{Binding ServerID, Converter={StaticResource serverIDConverter}}" TextWrapping="Wrap" Grid.Column="0"
-                                   Grid.Row="0" Grid.RowSpan="4" HorizontalAlignment="Center" Background="LightGray" FontSize="13"
+                                   HorizontalAlignment="Center" FontSize="13"
                            />
-                <ProgressBar Foreground="LightGreen" Grid.Row="0" Grid.Column="1"
-                                 Minimum="0" Maximum="{Binding Cpu, Mode=OneWay}" Value="{Binding CpuUsage, Mode=OneWay}"/>
-                <ProgressBar Foreground="LightGreen" Grid.Row="1" Grid.Column="1" 
-                                 Minimum="0" Maximum="{Binding Memory, Mode=OneWay}" Value="{Binding MemoryUsage, Mode=OneWay}"/>
-                <Button Style="{StaticResource ButtonStyle}" Grid.Row="0" Grid.Column="3" Content="升级CPU" CommandParameter="{Binding}"
-                                Command="{Binding Path=DataContext.UpgradeCpuCommand, RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}}"/>
-                <Button Style="{StaticResource ButtonStyle}" Grid.Row="1" Grid.Column="2" Content="升级内存" CommandParameter="{Binding}"
-                                Command="{Binding Path=DataContext.UpgradeMemoryCommand, RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}}"/>
+                <local:CpuMemoryControl Grid.Column="1"/>
+                <Expander Grid.Row="1" Grid.ColumnSpan="2" Header="详细信息" >
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="CPU" />
+                            <TextBlock Grid.Column="1" Text="{Binding Cpu}"/>
+                            <TextBlock Grid.Column="2" Text="运行中的任务"/>
+                            <TextBlock Grid.Column="3" Text="{Binding TasksInPool}"/>
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="内存" />
+                            <TextBlock Grid.Column="1" Text="{Binding Memory}"/>
+                            <TextBlock Grid.Column="2" Text="等待中的任务"/>
+                            <TextBlock Grid.Column="3" Text="{Binding TasksInQueue}"/>
+                        </Grid>
+                    </StackPanel>
+                </Expander>
             </Grid>
         </DataTemplate>
     </Window.Resources>
@@ -62,7 +86,12 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <StatusBar Grid.Column="0" Grid.Row="2">
+        <StatusBar Grid.Column="0" Grid.Row="2" Background="#673AB7" Grid.ColumnSpan="2">
+            <StatusBar.Resources>
+                <Style TargetType="Label" x:Key="{x:Type Label}">
+                    <Setter Property="Foreground" Value="White"/>
+                </Style>
+            </StatusBar.Resources>
             <StatusBar.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Grid>
@@ -79,11 +108,11 @@
                     </Grid>
                 </ItemsPanelTemplate>
             </StatusBar.ItemsPanel>
-            <StatusBarItem Grid.Column="0">
+            <StatusBarItem Grid.Column="0" >
                 <Label Content="平均等待时间: "/>
             </StatusBarItem>
             <StatusBarItem Grid.Column="1">
-                <Label>
+                <Label >
                     <Label.Content>
                         <MultiBinding Converter="{StaticResource avwtConverter}">
                             <Binding Path="Simulator.Tasks"/>
@@ -108,24 +137,46 @@
                 <Label Content="{Binding Simulator.FailedTasks}"/>
             </StatusBarItem>
         </StatusBar>
-        <Menu Background="LightSkyBlue" Grid.ColumnSpan="2">
-            <MenuItem Header="模拟" Foreground="White">
-                <MenuItem Header="开始" Background="White" Foreground="Black" Command="local:SimulatorViewModel.StartCommand"/>
-                <MenuItem Header="停止" Background="White" Foreground="Black" Command="local:SimulatorViewModel.StopCommand"/>
-                <MenuItem Header="重置" Background="White" Foreground="Black" Command="local:SimulatorViewModel.ResetCommand"/>
+        <Menu Grid.ColumnSpan="2" IsMainMenu="True" Background="#673AB7" Foreground="White">
+            <MenuItem Header="模拟" >
+                <MenuItem Background="White" Foreground="Black" Header="开始" Command="local:SimulatorViewModel.StartCommand">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Play"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Background="White" Foreground="Black" Header="停止" Command="local:SimulatorViewModel.StopCommand">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Stop"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Background="White" Foreground="Black" Header="重置" Command="local:SimulatorViewModel.ResetCommand">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Restart"/>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
-            <MenuItem Header="设置" Foreground="White">
-                <MenuItem Header="任务设置" Background="White" Foreground="Black" Command="{Binding ConfigCommand}"/>
+            <MenuItem Header="设置" >
+                <MenuItem Background="White" Foreground="Black" Header="任务设置" Command="{Binding ConfigCommand}">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Settings"/>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
-            <MenuItem Header="帮助" Foreground="White">
-                <MenuItem Header="关于" Background="White" Foreground="Black" Command="local:SimulatorViewModel.AboutCommand"/>
-                <MenuItem Header="文档" Background="White" Foreground="Black"/>
+            <MenuItem Header="帮助" >
+                <MenuItem Background="White" Foreground="Black" Header="关于" Command="local:SimulatorViewModel.AboutCommand">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="About"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Background="White" Foreground="Black" Header="文档" Click="Document_Click">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Book"/>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
-                
         </Menu>
         <Canvas Grid.Column="0" Grid.Row="1" Margin="20">
-            <Button Command="local:SimulatorViewModel.StartCommand" Canvas.Top="200" Canvas.Left="180" Content="START" FontSize="40" Style="{StaticResource ButtonStyle}"/>
-            <local:ServerControl x:Name="Server1" Height="180" Width="200" Canvas.Top="0" DataContext="{Binding Cluster[0]}">
+            <local:ServerControl x:Name="Server1" Height="180" Width="180" Canvas.Top="0" DataContext="{Binding Cluster[0]}">
                 <UserControl.Visibility>
                     <MultiBinding Converter="{StaticResource visibilityConverter}">
                         <Binding Source="{StaticResource value1}"/>
@@ -133,7 +184,7 @@
                     </MultiBinding>
                 </UserControl.Visibility>
             </local:ServerControl>
-            <local:ServerControl x:Name="Server2" Height="180" Width="200" Canvas.Bottom="0" DataContext="{Binding Cluster[1]}">
+            <local:ServerControl x:Name="Server2" Height="180" Width="180" Canvas.Bottom="0" DataContext="{Binding Cluster[1]}">
                 <UserControl.Visibility>
                     <MultiBinding Converter="{StaticResource visibilityConverter}">
                         <Binding Source="{StaticResource value2}"/>
@@ -141,7 +192,7 @@
                     </MultiBinding>
                 </UserControl.Visibility>
             </local:ServerControl>
-            <local:ServerControl x:Name="Server3" Height="180" Width="200" Canvas.Right="0" DataContext="{Binding Cluster[2]}">
+            <local:ServerControl x:Name="Server3" Height="180" Width="180" Canvas.Right="0" DataContext="{Binding Cluster[2]}">
                 <UserControl.Visibility>
                     <MultiBinding Converter="{StaticResource visibilityConverter}">
                         <Binding Source="{StaticResource value3}"/>
@@ -149,7 +200,7 @@
                     </MultiBinding>
                 </UserControl.Visibility>
             </local:ServerControl>
-            <local:ServerControl x:Name="Server4" Height="180" Width="200" Canvas.Right="0" Canvas.Bottom="0" DataContext="{Binding Cluster[3]}">
+            <local:ServerControl x:Name="Server4" Height="180" Width="180" Canvas.Right="0" Canvas.Bottom="0" DataContext="{Binding Cluster[3]}">
                 <UserControl.Visibility>
                     <MultiBinding Converter="{StaticResource visibilityConverter}">
                         <Binding Source="{StaticResource value4}"/>
@@ -159,12 +210,17 @@
             </local:ServerControl>
         </Canvas>
         <ListBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Cluster}" Background="Transparent"
-                 ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Auto"
-                 HorizontalContentAlignment="Stretch" ItemsPanel="{StaticResource serverPanel}" 
+                 HorizontalContentAlignment="Stretch" 
                  ItemTemplate="{StaticResource serverTemplate}" >
         </ListBox>
 
-        <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource ButtonStyle}" Content="增加服务器" Command="{Binding AddServerCommand}"/>
-
+        <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}" Grid.Row="1" Grid.RowSpan="2" HorizontalAlignment="Left"
+                VerticalAlignment="Bottom" Grid.Column="1" Command="{Binding AddServerCommand}" Margin="70,40">
+            <materialDesign:PackIcon Kind="Plus" Height="22" Width="22" />
+        </Button>
+        <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}" Grid.Row="1" Grid.RowSpan="2" HorizontalAlignment="Right"
+                VerticalAlignment="Bottom" Grid.Column="1" Command="{Binding DeleteServerCommand}" Margin="100,40">
+            <materialDesign:PackIcon Kind="Minus" Height="22" Width="22" />
+        </Button>
     </Grid>
 </Window>

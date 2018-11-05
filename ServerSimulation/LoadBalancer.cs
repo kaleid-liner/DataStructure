@@ -50,6 +50,11 @@ namespace DataStructure.ServerSimulation
             _servers.Add(server);
         }
 
+        public void RemoveServer(Server server)
+        {
+            _servers.Remove(server);
+        }
+
         public void Reset()
         {
             _servers.Clear();
