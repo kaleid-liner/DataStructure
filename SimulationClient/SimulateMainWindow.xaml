@@ -10,7 +10,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         mc:Ignorable="d"
-        Title="服务器集群模拟" Height="600" Width="800"  MinWidth="700"
+        Title="服务器集群模拟" Height="600" Width="800" ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">
     <Window.CommandBindings>
         <CommandBinding Command="local:SimulatorViewModel.StartCommand" Executed="StartExecute"/>
@@ -208,6 +208,18 @@
                     </MultiBinding>
                 </UserControl.Visibility>
             </local:ServerControl>
+            <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}" Canvas.Top="180" Canvas.Left="230" 
+                    Command="local:SimulatorViewModel.StartCommand">
+                <materialDesign:PackIcon Kind="Play"/>
+            </Button>
+            <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}" Canvas.Top="220" Canvas.Left="200"
+                    Command="local:SimulatorViewModel.StopCommand">
+                <materialDesign:PackIcon Kind="Stop"/>
+            </Button>
+            <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}" Canvas.Top="220" Canvas.Left="260"
+                    Command="local:SimulatorViewModel.ResetCommand">
+                <materialDesign:PackIcon Kind="Restart"/>
+            </Button>
         </Canvas>
         <ListBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Cluster}" Background="Transparent"
                  HorizontalContentAlignment="Stretch" 
