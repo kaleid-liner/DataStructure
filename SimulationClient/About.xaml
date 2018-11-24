@@ -31,9 +31,11 @@
             <Label Content="GUI client developed by ⑨ and styled with Material Design"
                    HorizontalAlignment="Left" Padding="20, 0, 0, 0" VerticalAlignment="Top"
                    FontWeight="Bold" Foreground="#FF8B6F6F"/>
-            <TextBlock Text="ServerSimulation develped with .NET Framework 4.7.1. You can visit this project at http://github.com/kaleid-liner/DataStructure."
-                       Margin="0, 10, 0, 0" Padding="20, 0, 20, 0" TextWrapping="Wrap"
-                       HorizontalAlignment="Left" VerticalAlignment="Top" Height="39"/>
+            <TextBlock Margin="0, 10, 0, 0" Padding="20, 0, 20, 0" TextWrapping="Wrap" 
+                       HorizontalAlignment="Left" VerticalAlignment="Top" Height="39">
+                ServerSimulation develped with .NET Framework 4.7.1. You can visit this project at 
+                <Hyperlink Click="OnLinkClick" x:Name="link" NavigateUri="http://github.com/kaleid-liner/DataStructure">My GitHub pages</Hyperlink>.
+            </TextBlock>
         </StackPanel>
     </Grid>
 </Window>

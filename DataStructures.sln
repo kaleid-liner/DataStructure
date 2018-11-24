@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerSimulation", "ServerS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimulationClient", "SimulationClient\SimulationClient.csproj", "{35D08630-EBCB-4613-8EB8-EACC28304114}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HuffmanZip", "HuffmanZip\HuffmanZip.csproj", "{CC7DBC68-D626-40CC-88F3-030DA7247969}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -89,6 +91,18 @@ Global
 		{35D08630-EBCB-4613-8EB8-EACC28304114}.Release|x64.Build.0 = Release|Any CPU
 		{35D08630-EBCB-4613-8EB8-EACC28304114}.Release|x86.ActiveCfg = Release|Any CPU
 		{35D08630-EBCB-4613-8EB8-EACC28304114}.Release|x86.Build.0 = Release|Any CPU
+		{CC7DBC68-D626-40CC-88F3-030DA7247969}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC7DBC68-D626-40CC-88F3-030DA7247969}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC7DBC68-D626-40CC-88F3-030DA7247969}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CC7DBC68-D626-40CC-88F3-030DA7247969}.Debug|x64.Build.0 = Debug|Any CPU
+		{CC7DBC68-D626-40CC-88F3-030DA7247969}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CC7DBC68-D626-40CC-88F3-030DA7247969}.Debug|x86.Build.0 = Debug|Any CPU
+		{CC7DBC68-D626-40CC-88F3-030DA7247969}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC7DBC68-D626-40CC-88F3-030DA7247969}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC7DBC68-D626-40CC-88F3-030DA7247969}.Release|x64.ActiveCfg = Release|Any CPU
+		{CC7DBC68-D626-40CC-88F3-030DA7247969}.Release|x64.Build.0 = Release|Any CPU
+		{CC7DBC68-D626-40CC-88F3-030DA7247969}.Release|x86.ActiveCfg = Release|Any CPU
+		{CC7DBC68-D626-40CC-88F3-030DA7247969}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

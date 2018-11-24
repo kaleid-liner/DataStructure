@@ -28,5 +28,10 @@ namespace SimulationClient
         {
             Close();
         }
+
+        private void OnLinkClick(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(link.NavigateUri.AbsoluteUri);
+        }
     }
 }
