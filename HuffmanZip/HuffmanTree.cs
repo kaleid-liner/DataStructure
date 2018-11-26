@@ -62,11 +62,11 @@ namespace DataStructure.HuffmanZip
         }
 
         /// <summary>
-        ///  push in a bit to decode
+        ///  push in a bit to decode (bit resides in the least significant bit of the integer
         /// </summary>
         /// <param name="bit">the bit to decode</param>
         /// <returns>if completed, return the byte, else return -1</returns>
-        public int Next(byte bit)
+        public int Next(int bit)
         {
             if (bit == 0)
                 currentNode = tree[currentNode].left;

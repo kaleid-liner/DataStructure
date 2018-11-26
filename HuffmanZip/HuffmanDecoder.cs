@@ -59,7 +59,7 @@ namespace DataStructure.HuffmanZip
                 byte b = bytes[i];
                 for (int j = 0; j < 8; j++)
                 {
-                    int orig = codeTree.Next((byte)(b & 1));
+                    int orig = codeTree.Next(b & 1);
                     if (orig != -1)
                         origBytes.Add((byte)orig);
                     b >>= 1;
@@ -68,7 +68,7 @@ namespace DataStructure.HuffmanZip
             byte rear = bytes.Last();
             for (int j = 0; j < 8 - padding; j++)
             {
-                int orig = codeTree.Next((byte)(rear & 1));
+                int orig = codeTree.Next(rear & 1);
                 if (orig != -1)
                     origBytes.Add((byte)orig);
                 rear >>= 1;
