@@ -1,0 +1,119 @@
+﻿<Window x:Class="VisualDijkstra.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VisualDijkstra"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:gv="clr-namespace:Microsoft.Msagl.WpfGraphControl;assembly=Microsoft.Msagl.WpfGraphControl"
+        Background="{StaticResource MaterialDesignPaper}"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{StaticResource MaterialDesignFont}"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        Title="VisualDijkstra" Height="600" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <ToolBar Style="{StaticResource MaterialDesignToolBar}" Grid.ColumnSpan="2">
+            <Button ToolTip="Load a Graph" Click="LoadGraph_Click">
+                <materialDesign:PackIcon Kind="FileDocument"/>
+            </Button>
+            <Separator/>
+            <Button ToolTip="Set as Starting Point" Click="SetStart_Click">
+                <materialDesign:PackIcon Kind="MyLocation"/>
+            </Button>
+            <Button ToolTip="Set as Destination" Click="SetDestination_Click">
+                <materialDesign:PackIcon Kind="Location"/>
+            </Button>
+            <Separator/>
+            <Button ToolTip="Find Shortest Path" Click="Dijkstra_Click">
+                <materialDesign:PackIcon Kind="Explore"/>
+            </Button>
+            <Separator/>
+            <Button ToolTip="Export Result as Text" Click="ExportResult_Click">
+                <materialDesign:PackIcon Kind="Export"/>
+            </Button>
+        </ToolBar>
+        <DockPanel Grid.Column="0" Grid.Row="1" x:Name="viewerPanel">
+        </DockPanel>
+        <StatusBar Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Background="Black">
+            <StatusBarItem Grid.Column="0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Node Num"/>
+                    <Label Grid.Column="1" Content="{Binding NodeNum}"/>
+                </Grid>
+            </StatusBarItem>
+            <Separator Grid.Column="1"/>
+            <StatusBarItem Grid.Column="2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Starting PT"/>
+                    <Label Grid.Column="1" Content="{Binding StartPT}"/>
+                </Grid>
+            </StatusBarItem>
+            <Separator Grid.Column="3"/>
+            <StatusBarItem Grid.Column="4">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Destination PT"/>
+                    <Label Grid.Column="1" Content="{Binding Destination}"/>
+                </Grid>
+            </StatusBarItem>
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+        </StatusBar>
+        <Expander Grid.Row="1" Grid.Column="1" ExpandDirection="Left">
+            <Expander.Header>
+                <TextBlock Text="View Shortest Path" >
+                    <TextBlock.LayoutTransform>
+                        <RotateTransform Angle="90" />
+                    </TextBlock.LayoutTransform>
+                </TextBlock>
+            </Expander.Header>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Distance"/>
+                    <Label Content="{Binding Distance}"/>
+                </StackPanel>
+                <Expander Header="View Path">
+                    <ListView ItemsSource="{Binding Path}">
+                    </ListView>
+                </Expander>
+            </StackPanel>
+        </Expander>
+        <materialDesign:Snackbar Grid.Row="1" Grid.ColumnSpan="2" x:Name="tipsSnackBar" MessageQueue="{materialDesign:MessageQueue}" />
+    </Grid>
+</Window>

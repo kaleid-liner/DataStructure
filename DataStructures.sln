@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimulationClient", "Simulat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HuffmanZip", "HuffmanZip\HuffmanZip.csproj", "{CC7DBC68-D626-40CC-88F3-030DA7247969}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualDijkstra", "VisualDijkstra\VisualDijkstra.csproj", "{8D7AED09-B4D7-436A-BDF0-FD96F80129DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -103,6 +105,18 @@ Global
 		{CC7DBC68-D626-40CC-88F3-030DA7247969}.Release|x64.Build.0 = Release|Any CPU
 		{CC7DBC68-D626-40CC-88F3-030DA7247969}.Release|x86.ActiveCfg = Release|Any CPU
 		{CC7DBC68-D626-40CC-88F3-030DA7247969}.Release|x86.Build.0 = Release|Any CPU
+		{8D7AED09-B4D7-436A-BDF0-FD96F80129DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D7AED09-B4D7-436A-BDF0-FD96F80129DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D7AED09-B4D7-436A-BDF0-FD96F80129DD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8D7AED09-B4D7-436A-BDF0-FD96F80129DD}.Debug|x64.Build.0 = Debug|Any CPU
+		{8D7AED09-B4D7-436A-BDF0-FD96F80129DD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8D7AED09-B4D7-436A-BDF0-FD96F80129DD}.Debug|x86.Build.0 = Debug|Any CPU
+		{8D7AED09-B4D7-436A-BDF0-FD96F80129DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D7AED09-B4D7-436A-BDF0-FD96F80129DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D7AED09-B4D7-436A-BDF0-FD96F80129DD}.Release|x64.ActiveCfg = Release|Any CPU
+		{8D7AED09-B4D7-436A-BDF0-FD96F80129DD}.Release|x64.Build.0 = Release|Any CPU
+		{8D7AED09-B4D7-436A-BDF0-FD96F80129DD}.Release|x86.ActiveCfg = Release|Any CPU
+		{8D7AED09-B4D7-436A-BDF0-FD96F80129DD}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
