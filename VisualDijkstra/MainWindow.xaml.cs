@@ -53,10 +53,7 @@ namespace VisualDijkstra
                     {
                         string line = file.ReadLine();
                         num = int.Parse(line);
-                        line = file.ReadLine();
-                        var strz = line.Split(' ');
-                        int src = int.Parse(strz[0]);
-                        int dst = int.Parse(strz[1]);
+                        string[] strz;
                         graph = new List<Edge>[num];
                         edges = new Microsoft.Msagl.Drawing.Edge[num][];
                         nodes = new Node[num];
@@ -69,7 +66,7 @@ namespace VisualDijkstra
                         {
                             nodes[i] = new Node(i.ToString());
                             line = file.ReadLine();
-                            strz = line.Split();
+                            strz = line.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
                             for (int j = i + 1; j < num; j++)
                             {
                                 int cost = int.Parse(strz[j]);
