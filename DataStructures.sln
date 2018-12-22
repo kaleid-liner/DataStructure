@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HuffmanZip", "HuffmanZip\Hu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualDijkstra", "VisualDijkstra\VisualDijkstra.csproj", "{8D7AED09-B4D7-436A-BDF0-FD96F80129DD}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HashTable", "HashTable\HashTable.vcxproj", "{AA2E055D-9241-4592-8A4A-94B47774A173}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +119,16 @@ Global
 		{8D7AED09-B4D7-436A-BDF0-FD96F80129DD}.Release|x64.Build.0 = Release|Any CPU
 		{8D7AED09-B4D7-436A-BDF0-FD96F80129DD}.Release|x86.ActiveCfg = Release|Any CPU
 		{8D7AED09-B4D7-436A-BDF0-FD96F80129DD}.Release|x86.Build.0 = Release|Any CPU
+		{AA2E055D-9241-4592-8A4A-94B47774A173}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{AA2E055D-9241-4592-8A4A-94B47774A173}.Debug|x64.ActiveCfg = Debug|x64
+		{AA2E055D-9241-4592-8A4A-94B47774A173}.Debug|x64.Build.0 = Debug|x64
+		{AA2E055D-9241-4592-8A4A-94B47774A173}.Debug|x86.ActiveCfg = Debug|Win32
+		{AA2E055D-9241-4592-8A4A-94B47774A173}.Debug|x86.Build.0 = Debug|Win32
+		{AA2E055D-9241-4592-8A4A-94B47774A173}.Release|Any CPU.ActiveCfg = Release|Win32
+		{AA2E055D-9241-4592-8A4A-94B47774A173}.Release|x64.ActiveCfg = Release|x64
+		{AA2E055D-9241-4592-8A4A-94B47774A173}.Release|x64.Build.0 = Release|x64
+		{AA2E055D-9241-4592-8A4A-94B47774A173}.Release|x86.ActiveCfg = Release|Win32
+		{AA2E055D-9241-4592-8A4A-94B47774A173}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
